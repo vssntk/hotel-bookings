@@ -1,5 +1,6 @@
 package com.tdtu.backend.service;
 
+import com.tdtu.backend.dto.UserAdminDto;
 import com.tdtu.backend.dto.UserDTO;
 import com.tdtu.backend.model.User;
 
@@ -15,4 +16,5 @@ public interface UserService {
     User updateUser(User user);
     void deleteUser(Long userId);
     boolean changePassword(Long userId, String oldPassword, String newPassword,String confirmPassword);
+    void createAdminUser(UserAdminDto userDto);
 }

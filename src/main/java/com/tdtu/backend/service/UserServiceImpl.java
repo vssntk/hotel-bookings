@@ -1,5 +1,6 @@
 package com.tdtu.backend.service;
 
+import com.tdtu.backend.dto.UserAdminDto;
 import com.tdtu.backend.dto.UserDTO;
 import com.tdtu.backend.model.Role;
 import com.tdtu.backend.model.User;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -85,6 +87,14 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
-
+    @Override
+    public void createAdminUser(UserAdminDto userDto) {
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setEmail(userDto.getEmail());
+        user.setRoles(userDto.getRoles().stream().map(role -> "ROLE_" + role).collect(Collectors.toSet()));
+        userRepository.save(user);
+    }
 
 }

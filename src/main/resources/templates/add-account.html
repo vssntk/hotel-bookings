@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trang chủ</title>
-  <link rel="shortcut icon" type="image/png" href="./img/logo.png" />
-  <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  <link rel="shortcut icon" type="image/png" th:href="@{/img/logo.png}" />
+  <link rel="stylesheet" th:href="@{/assets/css/styles.min.css}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-  <link rel="stylesheet" href="css/flaticon.css" type="text/css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-  <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-  <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-  <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-  <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-  <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 </head>
 
 <body class="body-add">
@@ -95,61 +95,67 @@
         </nav>
       </header>
       <div class="container-fluid">
-        <section class="rooms-section spad">
-            <div class="container-add">
-                <div class="uk-container">
-                    <div uk-grid>
-                        <div class="uk-width-1-2">
-                            <div class='uk-width-1-1@s'>
-                                <h2 class="uk-text-center">Thông tin phòng</h2>
-                                <hr />
-                                <div class="uk-width-1-1@s">
-                                    <label class="uk-form-label" for="txtModel">Tên</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="txtModel" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="txtBrand">Giới tính</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="txtBrand" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="txtBrand">Username</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="txtBrand" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="txtPrice">Password</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="txtPrice" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="txtPrice">Số điện thoại</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="txtPrice" type="text" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class = "booking-btn"><a>Thêm tài khoản nhân viên</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+          <section class="rooms-section spad">
+              <div class="container-add">
+                  <div class="uk-container">
+                      <form th:action="@{/admin/users/create}" th:object="${userAdminDto}" method="post">
+                          <div uk-grid>
+                              <div class="uk-width-1-2">
+                                  <div class='uk-width-1-1@s'>
+                                      <h2 class="uk-text-center">Thông tin phòng</h2>
+                                      <hr />
+
+                                      <div class="uk-width-1-1@s">
+                                          <label class="uk-form-label" for="txtUsername">Username</label>
+                                          <div class="uk-form-controls">
+                                              <input class="uk-input" id="txtUsername" th:field="*{username}" type="text" placeholder="Username">
+                                          </div>
+                                      </div>
+
+                                      <div class="uk-margin">
+                                          <label class="uk-form-label" for="txtPassword">Password</label>
+                                          <div class="uk-form-controls">
+                                              <input class="uk-input" id="txtPassword" th:field="*{password}" type="password" placeholder="Password">
+                                          </div>
+                                      </div>
+
+                                      <div class="uk-margin">
+                                          <label class="uk-form-label" for="txtEmail">Email</label>
+                                          <div class="uk-form-controls">
+                                              <input class="uk-input" id="txtEmail" th:field="*{email}" type="text" placeholder="Email">
+                                          </div>
+                                      </div>
+
+                                      <div class="uk-margin">
+                                          <label class="uk-form-label">Roles</label>
+                                          <div class="uk-form-controls">
+                                          <span th:each="role : ${T(com.tdtu.backend.model.Role).values()}">
+                                            <input type="checkbox" th:field="*{roles}" th:value="${role.name()}" style="display:block; width:auto; margin:0; padding:0; font-size:1em;" />
+                                            <label th:text="${role.name()}"></label>
+                                          </span>
+
+                                          </div>
+                                      </div>
+
+                                      <button class="booking-btn" type="submit">Thêm tài khoản nhân viên</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </section>
+
+      </div>
 
   </div>
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/sidebarmenu.js"></script>
-  <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-  <script src="../assets/js/dashboard.js"></script>
+  <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
+  <script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/assets/js/sidebarmenu.js}"></script>
+  <script th:src="@{/assets/js/app.min.js}"></script>
+  <script th:src="@{/assets/libs/apexcharts/dist/apexcharts.min.js}"></script>
+  <script th:src="@{/assets/libs/simplebar/dist/simplebar.js}"></script>
+  <script th:src="@{/assets/js/dashboard.js}"></script>
 </body>
 
 </html>
