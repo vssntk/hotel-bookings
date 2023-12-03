@@ -67,4 +67,24 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         return userRepository.save(user);
     }
+    @Override
+    public boolean changePassword(Long userId, String oldPassword, String newPassword, String confirmPassword) {
+        if (!newPassword.equals(confirmPassword)) {
+            return false; // New passwords do not match
+        }
+
+        Optional<User> userOpt = userRepository.findById(userId);
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
+                return false; // Old password doesn't match
+            }
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
+
 }

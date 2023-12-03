@@ -14,4 +14,5 @@ public interface UserService {
     List<User> findAllUsers();
     User updateUser(User user);
     void deleteUser(Long userId);
+    boolean changePassword(Long userId, String oldPassword, String newPassword,String confirmPassword);
 }

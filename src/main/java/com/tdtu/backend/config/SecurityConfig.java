@@ -23,9 +23,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/index", "/register", "/login","/css/**",
-                                "/js/**", "/images/**","/vendor/**","/fonts/**","/js/**").permitAll()
-                        .requestMatchers("/cart", "/cart/**", "/orders", "/checkout").hasAuthority("ROLE_USER")
-                        .requestMatchers("/admin/**", "/rooms/edit/**", "/rooms/delete/**", "/rooms/create/**").hasAuthority("ROLE_ADMIN")
+                                "/js/**", "/images/**","/vendor/**","/fonts/**","/js/**")
+                        .permitAll()
+                        .requestMatchers("/cart", "/cart/**", "/orders", "/checkout","/user/change-password")
+                        .hasAuthority("ROLE_USER")
+                        .requestMatchers("/admin/**", "/rooms/edit/**", "/rooms/delete/**", "/rooms/create/**")
+                        .hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
