@@ -21,9 +21,10 @@
 </head>
 
 <body class="body-add">
-
+<!--  Body Wrapper -->
 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
      data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
     <aside class="left-sidebar">
         <div>
             <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -73,7 +74,6 @@
             </nav>
         </div>
     </aside>
-
     <div class="body-wrapper">
         <header class="app-header">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -91,46 +91,35 @@
             <section class="rooms-section spad">
                 <div class="container-add">
                     <div class="uk-container">
-                        <form th:action="@{/admin/users/create}" th:object="${userAdminDto}" method="post">
+                        <form  method="post">
                             <div uk-grid>
                                 <div class="uk-width-1-2">
                                     <div class='uk-width-1-1@s'>
-                                        <h2 class="uk-text-center">Thông tin tài khoản</h2>
+                                        <h2 class="uk-text-center">Thông tin Tài khoản</h2>
                                         <hr />
 
                                         <div class="uk-width-1-1@s">
                                             <label class="uk-form-label" for="txtUsername">Username</label>
                                             <div class="uk-form-controls">
-                                                <input class="uk-input" id="txtUsername" th:field="*{username}" type="text" placeholder="Username">
+                                                <input class="uk-input" id="txtUsername" type="text" placeholder="Username" value="aâ">
                                             </div>
                                         </div>
 
                                         <div class="uk-margin">
                                             <label class="uk-form-label" for="txtPassword">Password</label>
                                             <div class="uk-form-controls">
-                                                <input class="uk-input" id="txtPassword" th:field="*{password}" type="password" placeholder="Password">
+                                                <input class="uk-input" id="txtPassword"  type="password" placeholder="Password" value="aâ">
                                             </div>
                                         </div>
 
                                         <div class="uk-margin">
                                             <label class="uk-form-label" for="txtEmail">Email</label>
                                             <div class="uk-form-controls">
-                                                <input class="uk-input" id="txtEmail" th:field="*{email}" type="text" placeholder="Email">
+                                                <input class="uk-input" id="txtEmail"  type="text" placeholder="Email" value="aa">
                                             </div>
                                         </div>
 
-                                        <div class="uk-margin">
-                                            <label class="uk-form-label">Roles</label>
-                                            <div class="uk-form-controls">
-                                          <span th:each="role : ${T(com.tdtu.backend.model.Role).values()}">
-                                            <input type="checkbox" th:field="*{roles}" th:value="${role.name()}" style="display:block; width:auto; margin:0; padding:0; font-size:1em;" />
-                                            <label th:text="${role.name()}"></label>
-                                          </span>
-
-                                            </div>
-                                        </div>
-
-                                        <button class="booking-btn" type="submit">Thêm tài khoản nhân viên</button>
+                                        <button class="booking-btn" type="submit">Sửa</button>
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +128,10 @@
                 </div>
             </section>
         </div>
+        <!-- Rooms Section End -->
     </div>
-
 </div>
+
 <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
 <script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/assets/js/sidebarmenu.js}"></script>

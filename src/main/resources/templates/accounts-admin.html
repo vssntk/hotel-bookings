@@ -27,8 +27,8 @@
     <aside class="left-sidebar">
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./accounts-admin.html" class="text-nowrap logo-img">
-            <img src="./img/logo.png" width="180" alt="" />
+          <a href="/admin/users" class="text-nowrap logo-img">
+            <img src="/img/logo.png" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -37,7 +37,7 @@
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./rooms-admin.html" aria-expanded="">
+              <a class="sidebar-link" href="/admin/rooms" aria-expanded="">
                 <span>
                     <i class="fa-solid fa-bed"></i>
                 </span>
@@ -45,7 +45,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./service-admin.html" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/services" aria-expanded="false">
                 <span>
                   <i class="ti ti-alert-circle"></i>
                 </span>
@@ -53,15 +53,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./guests-admin.html" aria-expanded="false">
-                <span>
-                    <i class="fa-solid fa-users"></i>
-                </span>
-                <span class="hide-menu">Quản lý khách hàng</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link sidebar-item-active" href="./accounts-admin.html" aria-expanded="false">
+              <a class="sidebar-link sidebar-item-active" href="/admin/users" aria-expanded="false">
                 <span>
                     <i class="fa-solid fa-user-gear"></i>
                 </span>
@@ -69,7 +61,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="./login.html" aria-expanded="false">
+                <a class="sidebar-link" href="/login" aria-expanded="false">
                   <span>
                     <i class="fa-solid fa-right-from-bracket"></i>
                   </span>
@@ -92,7 +84,7 @@
               </ul>
               <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                 <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                 <a href="./add-account.html" class = "booking-btn">Thêm tài khoản</a>
+                 <a href="/admin/users/create" class = "booking-btn">Thêm tài khoản</a>
                 </ul>
               </div>
         </nav>
@@ -126,7 +118,8 @@
           </div>
         </section>
       </div>
-
+    </div>
+  </div>
 
 
   <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
