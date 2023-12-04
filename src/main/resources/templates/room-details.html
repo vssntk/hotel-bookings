@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -14,16 +14,16 @@
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 </head>
 
 <body>
@@ -143,10 +143,13 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="room-details-item">
-                        <img src="img/room/room-details.jpg" alt="">
+
+                        <img th:src="@{'/uploads/'+${room.imagePath}}" alt="Hình ảnh phòng" />
+
                         <div class="rd-text">
                             <div class="rd-title">
-                                <h3>A0001</h3>
+                                <!-- Hiển thị tên hoặc mã phòng -->
+                                <h3 th:text="${room.name}">Tên phòng</h3>
                                 <div class="rdt-right">
                                     <div class="rating">
                                         <i class="icon_star"></i>
@@ -158,28 +161,35 @@
                                     <a href="#">Booking Now</a>
                                 </div>
                             </div>
-                            <h2>200.000 VNĐ<span>/đêm</span></h2>
+
+                            <!-- Hiển thị giá phòng -->
+                            <h2 th:text="${room.price + ' $/đêm'}"><span>/đêm</span></h2>
+
+
                             <table>
                                 <tbody>
-                                    <tr>
-                                        <td class="r-o">Loại</td>
-                                        <td>Phòng đơn</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Số lượng tối đa:</td>
-                                        <td>1 người</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Giường:</td>
-                                        <td>Lớn</td>
-                                    </tr>
-                                    
+                                <tr>
+                                    <td class="r-o">Loại</td>
+                                    <!-- Hiển thị loại phòng -->
+                                    <td th:text="${room.category.name}">Loại phòng</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Số lượng tối đa:</td>
+                                    <!-- Hiển thị sức chứa phòng -->
+                                    <td th:text="${room.capacity} + ' người'">Sức chứa</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Giường:</td>
+                                    <td >Lớn</td>
+                                </tr>
                                 </tbody>
                             </table>
-                            <p class="f-para">Phòng đơn của chúng tôi là một điểm đến lý tưởng cho những người du lịch độc thân hoặc những chuyến công tác ngắn hạn. Với không gian thoải mái và tiện nghi hiện đại, phòng đơn của chúng tôi mang lại sự thoải mái và tiện lợi cho quý khách. Phòng đơn được thiết kế một cách sang trọng và tinh tế, với trang thiết bị tiện ích như TV màn hình phẳng, máy pha cà phê, và bàn làm việc thuận tiện cho công việc hoặc giải trí. Bạn sẽ có cơ hội thư giãn sau một ngày dài khám phá thành phố hoặc tham gia các cuộc họp kinh doanh. Không chỉ vậy, quý khách cũng sẽ được hưởng những dịch vụ chất lượng như truy cập Wi-Fi miễn phí, dịch vụ phòng hàng ngày, và quyền lợi của chương trình thành viên khách hàng. Chúng tôi cam kết mang đến cho bạn một trải nghiệm lưu trú không chỉ thoải mái mà còn đáp ứng đầy đủ những yêu cầu của bạn. Hãy đặt phòng ngay để khám phá sự thoải mái và tiện lợi của phòng đơn tại khách sạn của chúng tôi!</p>
-                           
+
+                            <!-- Mô tả phòng -->
+                            <p class="f-para">Mô tả phòng</p>
                         </div>
                     </div>
+
                     <div class="rd-reviews">
                         <h4>Reviews</h4>
                         <div class="review-item">
@@ -335,14 +345,14 @@
     </div>
         <!-- FOOTER END-->
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/js/jquery.nice-select.min.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/jquery.slicknav.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 
 </html>

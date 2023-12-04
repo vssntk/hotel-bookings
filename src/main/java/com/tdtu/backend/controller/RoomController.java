@@ -1,47 +1,78 @@
 package com.tdtu.backend.controller;
 
 import com.tdtu.backend.model.Room;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import com.tdtu.backend.service.CategoryService;
+import com.tdtu.backend.service.FileStorageService;
 import com.tdtu.backend.service.RoomService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/rooms")
+@Controller
+@RequestMapping("/rooms")
 public class RoomController {
+
     @Autowired
     private RoomService roomService;
 
+    @Autowired
+    private FileStorageService fileStorageService;
+    @Autowired
+    private CategoryService categoryService;
     @GetMapping
-    public ResponseEntity<List<Room>> getAll() {
-        return ResponseEntity.ok(roomService.getAll());
+    public String listRooms(Model model) {
+        model.addAttribute("rooms", roomService.getAllRooms());
+        return "rooms";
     }
 
-    @GetMapping("/available")
-    public ResponseEntity<List<Room>> getAvailableRooms() {
-        return ResponseEntity.ok(roomService.findAvailableRooms());
+    @GetMapping("/create")
+    public String showCreateForm(Model model) {
+        model.addAttribute("room", new Room());
+        model.addAttribute("categories", categoryService.getAll());
+        return "add-room";
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Room> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(roomService.getById(id));
+    @PostMapping("/create")
+    public String createRoom(@RequestParam("file") MultipartFile file, @ModelAttribute Room room) {
+        String imagePath = fileStorageService.saveImage(file);
+        room.setImagePath(imagePath);
+        roomService.createRoom(room);
+        return "redirect:/admin/rooms";
     }
 
-    @PostMapping
-    public ResponseEntity<Room> save(@RequestBody Room room) {
-        return ResponseEntity.ok(roomService.save(room));
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable Long id, Model model) {
+        Room room = roomService.findRoomById(id);
+        model.addAttribute("room", room);
+        model.addAttribute("categories", categoryService.getAll());
+        return "edit-room";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Long id) {
-        roomService.deleteById(id);
-        return ResponseEntity.ok("Deleted");
+    @PostMapping("/update/{id}")
+    public String updateRoom(@PathVariable Long id, @RequestParam("file") MultipartFile file, @ModelAttribute Room room) {
+        if (!file.isEmpty()) {
+            String imagePath = fileStorageService.saveImage(file);
+            room.setImagePath(imagePath);
+        }
+        roomService.updateRoom(id, room);
+        return "redirect:/admin/rooms";
     }
 
-    @GetMapping("/category/{categoryName}")
-    public ResponseEntity<List<Room>> getByCategoryName(@PathVariable String categoryName) {
-        return ResponseEntity.ok(roomService.findByCategoryName(categoryName));
+    @GetMapping("/delete/{id}")
+    public String deleteRoom(@PathVariable Long id) {
+        roomService.deleteRoom(id);
+        return "redirect:/admin/rooms";
+    }
+    @GetMapping("/details/{id}")
+    public String showRoomDetails(@PathVariable Long id, Model model) {
+        Room room = roomService.findRoomById(id);
+        if (room != null) {
+            model.addAttribute("room", room);
+            return "room-details";
+        } else {
+            return "redirect:/rooms";
+        }
     }
 }

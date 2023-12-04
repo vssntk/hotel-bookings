@@ -1,7 +1,10 @@
 package com.tdtu.backend.controller;
 
 import com.tdtu.backend.dto.UserAdminDto;
+import com.tdtu.backend.model.Room;
 import com.tdtu.backend.model.User;
+import com.tdtu.backend.service.CategoryService;
+import com.tdtu.backend.service.RoomService;
 import com.tdtu.backend.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,8 @@ import java.util.List;
 public class AdminController {
 
     private final UserService userService;
-
+    @Autowired
+    private RoomService roomService;
     @Autowired
     public AdminController(UserService userService) {
         this.userService = userService;
@@ -68,5 +72,11 @@ public class AdminController {
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return "redirect:/admin/users";
+    }
+    @GetMapping("/rooms")
+    public String showRoomsForAdmin(Model model) {
+        List<Room> rooms = roomService.getAllRooms();
+        model.addAttribute("rooms", rooms);
+        return "rooms-admin";
     }
 }

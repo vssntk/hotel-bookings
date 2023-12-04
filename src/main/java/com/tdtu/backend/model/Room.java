@@ -23,4 +23,7 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @Column(name = "image_path")
+    private String imagePath;
 }

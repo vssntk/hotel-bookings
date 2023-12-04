@@ -1,43 +1,47 @@
 package com.tdtu.backend.service;
 
-import com.tdtu.backend.model.Category;
-import com.tdtu.backend.model.Room;
-import com.tdtu.backend.repository.CategoryRepository;
-import com.tdtu.backend.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.tdtu.backend.model.Room;
+import com.tdtu.backend.repository.RoomRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoomService {
+
     @Autowired
     private RoomRepository roomRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
 
-    public List<Room> getAll() {
-        return roomRepository.findAll();
-    }
-    public Room getById(Long id) {
-        return roomRepository.findById(id).orElse(null);
-    }
-    public Room save(Room room) {
-        if (room.getCategory() != null && room.getCategory().getId() != null) {
-            Category category = categoryRepository.findById(room.getCategory().getId()).orElse(null);
-            if (category != null) {
-                room.setCategory(category);
-            }
-        }
+    public Room createRoom(Room room) {
         return roomRepository.save(room);
     }
-    public void deleteById(Long id) {
-        roomRepository.deleteById(id);
+
+    public Room updateRoom(Long id, Room roomDetails) {
+        Room room = roomRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Room not found with id: " + id));
+        room.setName(roomDetails.getName());
+        room.setCapacity(roomDetails.getCapacity());
+        room.setPrice(roomDetails.getPrice());
+        room.setStatus(roomDetails.getStatus());
+        room.setCategory(roomDetails.getCategory());
+        room.setImagePath(roomDetails.getImagePath());
+        return roomRepository.save(room);
     }
-    public List<Room> findAvailableRooms() {
-        return roomRepository.findByStatus("AVAILABLE");
+
+    public void deleteRoom(Long id) {
+        Room room = roomRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Room not found with id: " + id));
+        roomRepository.delete(room);
     }
-    public List<Room> findByCategoryName(String name) {
-        return roomRepository.findByCategoryName(name);
+
+    public List<Room> getAllRooms() {
+        return roomRepository.findAll();
+    }
+
+    public Room findRoomById(Long id) {
+        return roomRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Room not found with id: " + id));
     }
 }

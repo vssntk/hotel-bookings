@@ -22,12 +22,13 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/index", "/register", "/login","/css/**",
-                                "/js/**", "/images/**","/vendor/**","/fonts/**","/js/**")
+                        .requestMatchers("/", "/index", "/register", "/login","/rooms",
+                                "/rooms/details/**","/css/**","/uploads/**",
+                                "/js/**", "/img/**","/vendor/**","/fonts/**","/js/**")
                         .permitAll()
                         .requestMatchers("/cart", "/cart/**", "/orders", "/checkout","/user/change-password")
                         .hasAuthority("ROLE_USER")
-                        .requestMatchers("/admin/**", "/rooms/edit/**", "/rooms/delete/**", "/rooms/create/**")
+                        .requestMatchers("/admin/**", "/rooms/edit/**","/rooms/update/**", "/rooms/delete/**", "/rooms/create/**")
                         .hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
