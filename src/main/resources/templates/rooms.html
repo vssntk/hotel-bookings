@@ -159,7 +159,11 @@
                             </table>
                             <a th:href="@{'/rooms/details/' + ${room.id}}" class="primary-btn">Xem chi tiết</a><br>
 
-                            <a class="booking-btn" href="#">Đặt liền</a>
+                            <form th:action="@{/cart/add}" method="post">
+                                <input type="hidden" name="itemId" th:value="${room.id}" />
+                                <input type="hidden" name="itemType" value="room" />
+                                <button type="submit" class="booking-btn">Đặt liền</button>
+                            </form>
                         </div>
                     </div>
                 </div>

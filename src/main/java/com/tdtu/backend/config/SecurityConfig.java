@@ -27,7 +27,7 @@ public class SecurityConfig {
                                 "/rooms/details/**","/css/**","/uploads/**","/confirm-account","/registrationPending",
                                 "/js/**", "/img/**","/vendor/**","/fonts/**","/js/**")
                         .permitAll()
-                        .requestMatchers("/cart", "/cart/**", "/orders", "/checkout","/user/change-password")
+                        .requestMatchers("/cart", "/cart/**","/cart/add", "/orders", "/checkout","/user/change-password")
                         .hasAuthority("ROLE_USER")
                         .requestMatchers("/admin/**", "/rooms/edit/**","/rooms/update/**", "/rooms/delete/**", "/rooms/create/**")
                         .hasAuthority("ROLE_ADMIN")

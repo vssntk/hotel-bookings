@@ -20,11 +20,27 @@ public class CartItem {
 
     private int quantity;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id")
+    private Room room;
+
+    public Double getTotalPrice() {
+        if (serviceModel != null) {
+            return serviceModel.getPrice() * quantity;
+        } else if (room != null) {
+            return room.getPrice() * quantity;
+        }
+        return 0.0;
+    }
     public CartItem(ServiceModel serviceModel, int quantity) {
         this.serviceModel = serviceModel;
         this.quantity = quantity;
+        this.room = null;
     }
-    public Double getTotalPrice() {
-        return serviceModel.getPrice() * quantity;
+
+    public CartItem(Room room, int quantity) {
+        this.room = room;
+        this.quantity = quantity;
+        this.serviceModel = null;
     }
 }

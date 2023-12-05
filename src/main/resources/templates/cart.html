@@ -137,11 +137,15 @@
                     <td class="p-4">
                         <div class="media align-items-center">
                             <div class="media-body">
-                                <span th:text="${item.serviceModel.name}" class="d-block text-dark"></span>
+                                <span th:if="${item.serviceModel != null}" th:text="${item.serviceModel.name}" class="d-block text-dark"></span>
+                                <span th:if="${item.room != null}" th:text="${item.room.name}" class="d-block text-dark"></span>
                             </div>
                         </div>
                     </td>
-                    <td class="text-right font-weight-semibold align-middle p-4" th:text="${item.serviceModel.price} + ' VNĐ'"></td>
+                    <td class="text-right font-weight-semibold align-middle p-4">
+                        <span th:if="${item.serviceModel != null}" th:text="${item.serviceModel.price} + ' VNĐ'"></span>
+                        <span th:if="${item.room != null}" th:text="${item.room.price} + ' VNĐ'"></span>
+                    </td>
                     <td class="align-middle p-4">
                         <form th:action="@{/cart/update}" method="post">
                             <input type="hidden" name="itemId" th:value="${item.id}" />
@@ -157,6 +161,7 @@
                     </td>
                 </tr>
                 </tbody>
+
 
             </table>
           </div>

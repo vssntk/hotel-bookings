@@ -1,9 +1,11 @@
 package com.tdtu.backend.controller;
 
 import com.tdtu.backend.model.Cart;
+import com.tdtu.backend.model.Room;
 import com.tdtu.backend.model.ServiceModel;
 import com.tdtu.backend.model.User;
 import com.tdtu.backend.service.CartService;
+import com.tdtu.backend.service.RoomService;
 import com.tdtu.backend.service.ServiceService;
 import com.tdtu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +24,14 @@ public class CartController {
     private final CartService cartService;
     private final UserService userService;
     private final ServiceService serviceService;
+    private final RoomService roomService;
 
     @Autowired
-    public CartController(CartService cartService, UserService userService, ServiceService serviceService) {
+    public CartController(CartService cartService, UserService userService, ServiceService serviceService, RoomService roomService) {
         this.cartService = cartService;
         this.userService = userService;
         this.serviceService = serviceService;
+        this.roomService = roomService;
     }
 
     @GetMapping
@@ -38,15 +42,23 @@ public class CartController {
         return "cart";
     }
     @PostMapping("/add")
-    public String addItemToCart(@RequestParam Long serviceId) {
+    public String addItemToCart(@RequestParam Long itemId, @RequestParam String itemType) {
         User user = getCurrentUser();
         if (user != null) {
-            ServiceModel service = serviceService.findById(serviceId)
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid service Id: " + serviceId));
-            cartService.addItemToCart(user, service);
+            if ("service".equals(itemType)) {
+                ServiceModel service = serviceService.findById(itemId)
+                        .orElseThrow(() -> new IllegalArgumentException("Invalid service Id: " + itemId));
+                cartService.addItemToCart(user, service);
+            } else if ("room".equals(itemType)) {
+                Room room = roomService.findRoomById(itemId);
+                cartService.addItemToCart(user, room);
+            } else {
+                throw new IllegalArgumentException("Invalid item type: " + itemType);
+            }
         }
         return "redirect:/cart";
     }
+
 
     @PostMapping("/update")
     public String updateCartItem(@RequestParam("itemId") Long itemId,

@@ -1,9 +1,6 @@
 package com.tdtu.backend.service;
 
-import com.tdtu.backend.model.Cart;
-import com.tdtu.backend.model.CartItem;
-import com.tdtu.backend.model.ServiceModel;
-import com.tdtu.backend.model.User;
+import com.tdtu.backend.model.*;
 import com.tdtu.backend.repository.CartItemRepository;
 import com.tdtu.backend.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +19,19 @@ public class CartService {
         this.cartItemRepository = cartItemRepository;
     }
     public void addItemToCart(User user, ServiceModel service) {
-        Cart cart = cartRepository.findByUser(user)
-                .orElse(new Cart(user));
+        Cart cart = cartRepository.findByUser(user).orElse(new Cart(user));
         CartItem newItem = new CartItem(service, 1);
         cart.getItems().add(newItem);
         cartRepository.save(cart);
     }
+
+    public void addItemToCart(User user, Room room) {
+        Cart cart = cartRepository.findByUser(user).orElse(new Cart(user));
+        CartItem newItem = new CartItem(room, 1);
+        cart.getItems().add(newItem);
+        cartRepository.save(cart);
+    }
+
 
     public void updateCartItem(User user, Long itemId, int quantity) {
         Cart cart = cartRepository.findByUser(user)

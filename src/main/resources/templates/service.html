@@ -216,7 +216,8 @@
                             <p th:text="${serviceModel.description}">Service Description</p>
                             <h5 th:text="${serviceModel.price} + ' VNĐ'">100.000 VNĐ</h5><br/>
                             <form th:action="@{/cart/add}" method="post">
-                                <input type="hidden" name="serviceId" th:value="${serviceModel.id}" />
+                                <input type="hidden" name="itemId" th:value="${serviceModel.id}" />
+                                <input type="hidden" name="itemType" value="service" />
                                 <button type="submit" class="booking-btn">Thêm vào giỏ</button>
                             </form>
                         </a>
