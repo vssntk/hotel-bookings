@@ -39,7 +39,7 @@
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
             <li class="sidebar-item">
-              <a class="sidebar-link sidebar-item-active" href="./rooms-admin.html" aria-expanded="">
+              <a class="sidebar-link sidebar-item-active" href="/admin/rooms" aria-expanded="">
                 <span>
                     <i class="fa-solid fa-bed"></i>
                 </span>
@@ -47,23 +47,16 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./service-admin.html" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/services" aria-expanded="false">
                 <span>
                   <i class="ti ti-alert-circle"></i>
                 </span>
                 <span class="hide-menu">Quản lý dịch vụ</span>
               </a>
             </li>
+
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./guests-admin.html" aria-expanded="false">
-                <span>
-                    <i class="fa-solid fa-users"></i>
-                </span>
-                <span class="hide-menu">Quản lý khách hàng</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./accounts-admin.html" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/users" aria-expanded="false">
                 <span>
                     <i class="fa-solid fa-user-gear"></i>
                 </span>
@@ -107,7 +100,7 @@
                         <div class="room-item">
                             <img th:src="@{'/uploads/' + ${room.imagePath}}" alt="Room Image">
                             <div class="ri-text">
-                                <h4 th:text="${room.name}">Phòng A0001</h4>
+                                <h4 th:text="${room.name}"></h4>
                                 <h3 th:text="${room.price} + ' VNĐ'"><span>/đêm</span></h3>
                                 <div style="text-align:center;">
                                     <a class="booking-btn" th:href="@{'/rooms/edit/' + ${room.id}}">Sửa</a>
@@ -126,8 +119,8 @@
                     </div>
                 </div>
                 </div>
-            </div>
         </section>
+      </div>
     </div>
   </div>
   <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>

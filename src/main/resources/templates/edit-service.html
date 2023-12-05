@@ -21,118 +21,137 @@
 </head>
 
 <body class="body-add">
-  <!--  Body Wrapper -->
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
     <!-- Sidebar Start -->
-      <aside class="left-sidebar">
-          <div>
-              <div class="brand-logo d-flex align-items-center justify-content-between">
-                  <a href="/admin/users" class="text-nowrap logo-img">
-                      <img src="/img/logo.png" width="180" alt="" />
-                  </a>
-                  <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                      <i class="ti ti-x fs-8"></i>
-                  </div>
-              </div>
-              <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-                  <ul id="sidebarnav">
-                      <li class="sidebar-item">
-                          <a class="sidebar-link" href="/admin/rooms" aria-expanded="">
+    <aside class="left-sidebar">
+        <div>
+            <div class="brand-logo d-flex align-items-center justify-content-between">
+                <a href="/admin/users" class="text-nowrap logo-img">
+                    <img src="/img/logo.png" width="180" alt="" />
+                </a>
+                <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                    <i class="ti ti-x fs-8"></i>
+                </div>
+            </div>
+            <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                <ul id="sidebarnav">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/admin/rooms" aria-expanded="">
                 <span>
                     <i class="fa-solid fa-bed"></i>
                 </span>
-                              <span class="hide-menu">Quản lý phòng</span>
-                          </a>
-                      </li>
-                      <li class="sidebar-item">
-                          <a class="sidebar-link" href="/admin/service" aria-expanded="false">
+                            <span class="hide-menu">Quản lý phòng</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/admin/service" aria-expanded="false">
                 <span>
                   <i class="ti ti-alert-circle"></i>
                 </span>
-                              <span class="hide-menu">Quản lý dịch vụ</span>
-                          </a>
-                      </li>
+                            <span class="hide-menu">Quản lý dịch vụ</span>
+                        </a>
+                    </li>
 
-                      <li class="sidebar-item">
-                          <a class="sidebar-link" href="/admin/users" aria-expanded="false">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/admin/users" aria-expanded="false">
                 <span>
                     <i class="fa-solid fa-user-gear"></i>
                 </span>
-                              <span class="hide-menu">Quản lý tài khoản</span>
-                          </a>
-                      </li>
-                      <li class="sidebar-item">
-                          <a class="sidebar-link" href="/login" aria-expanded="false">
+                            <span class="hide-menu">Quản lý tài khoản</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/login" aria-expanded="false">
                   <span>
                     <i class="fa-solid fa-right-from-bracket"></i>
                   </span>
-                              <span class="hide-menu">Đăng xuất</span>
-                          </a>
-                      </li>
-                  </ul>
-              </nav>
-          </div>
-      </aside>
+                            <span class="hide-menu">Đăng xuất</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
     <div class="body-wrapper">
-      <header class="app-header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-item d-block d-xl-none">
-                  <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse">
-                    <i class="ti ti-menu-2"></i>
-                  </a>
-                </li>
-              </ul>
-     
-        </nav>
-      </header>
-      <div class="container-fluid">
-        <section class="rooms-section spad">
-            <div class="container-add">
-                <div class="uk-container">
-                    <div uk-grid>
-                        <div class="uk-width-1-2">
-                            <div class='uk-width-1-1@s'>
-                                <h2 class="uk-text-center">Thông tin dịch vụ</h2>
-                                <hr />
-                                <div class="uk-width-1-1@s">
-                                    <label class="uk-form-label" for="txtName">Tên</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="txtName" type="text" placeholder="">
+        <header class="app-header">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item d-block d-xl-none">
+                        <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </header>
+        <div class="container-fluid">
+            <section class="rooms-section spad">
+                <div class="container-add">
+                    <div class="uk-container">
+                        <div uk-grid>
+                            <div class="uk-width-1-2">
+                                <div class='uk-width-1-1@s'>
+                                    <h2 class="uk-text-center">Chỉnh sửa dịch vụ</h2>
+                                    <hr />
+                                    <form th:action="@{/admin/services/{id}/edit(id=${service.id})}" method="post" enctype="multipart/form-data">                                        <div class="uk-width-1-1@s">
+                                        <label class="uk-form-label" for="id">ID </label>
+                                        <div class="uk-form-controls">
+                                            <input class="uk-input" readonly id="id" name="id" type="text" placeholder="" th:value="${service.id}" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="txtPrice">Giá</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="txtPrice" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="txtDes">Mô tả</label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="txtDes" type="text" placeholder="">
-                                    </div>
+                                        <div class="uk-width-1-1@s">
+                                            <label class="uk-form-label" for="name">Tên</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" id="name" name="name" type="text" placeholder="" th:value="${service.name}" required>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-1@s">
+                                            <label class="uk-form-label" for="price">Giá</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" id="price" name="price" type="text" placeholder="" th:value="${service.price}" required>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-1@s">
+                                            <label class="uk-form-label" for="description">Mô tả</label>
+                                            <div class="uk-form-controls">
+                                                <input class="uk-input" id="description" name="description" type="text" placeholder="" th:value="${service.description}" required>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-1@s">
+                                            <label class="uk-form-label" for="imageFile">Hình ảnh hiện tại</label>
+                                            <div>
+                                                <img th:src="@{'/uploads/' + ${service.imagePath}}" alt="Service Image">
+
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-1@s">
+                                            <label class="uk-form-label" for="imageFile">Chọn hình ảnh mới (nếu muốn cập nhật)</label>
+                                            <div class="uk-form-controls">
+                                                <input type="file" id="imageFile" name="imageFile" accept="image/*">
+                                            </div>
+                                        </div>
+                                        <button class="booking-btn" type="submit">Cập nhật dịch vụ</button>
+                                    </form>
                                 </div>
                             </div>
-                            <button class = "booking-btn"><a>Sửa</a></button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-      </div>
-        <!-- Rooms Section End -->
+            </section>
+        </div>
     </div>
-  </div>
-      <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
-      <script th:src="@{/js/bootstrap.min.js}"></script>
-      <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
-      <script th:src="@{/js/jquery.nice-select.min.js}"></script>
-      <script th:src="@{/js/jquery-ui.min.js}"></script>
-      <script th:src="@{/js/jquery.slicknav.js}"></script>
-      <script th:src="@{/js/owl.carousel.min.js}"></script>
-      <script th:src="@{/js/main.js}"></script>
+</div>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/js/jquery.nice-select.min.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+<script th:src="@{/js/jquery.slicknav.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 
 </body>
 
