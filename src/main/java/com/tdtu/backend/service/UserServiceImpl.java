@@ -4,21 +4,29 @@ import com.tdtu.backend.dto.UserAdminDto;
 import com.tdtu.backend.dto.UserDTO;
 import com.tdtu.backend.model.Role;
 import com.tdtu.backend.model.User;
+import com.tdtu.backend.model.VerificationToken;
 import com.tdtu.backend.repository.UserRepository;
+import com.tdtu.backend.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private VerificationTokenRepository tokenRepository;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -27,10 +35,45 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
-        user.setRoles(Collections.singleton("ROLE_USER"));
+    public void createUser(User user) throws Exception {
+        // Check if username already exists
+        if (userRepository.existsByUsername(user.getUsername())) {
+            throw new Exception("Username already exists");
+        }
+
+        // Check if email already exists
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new Exception("Email already exists");
+        }
+        user.setRoles(Collections.singleton(Role.USER));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        userRepository.save(user);
+        String tokenString = UUID.randomUUID().toString();
+        VerificationToken token = new VerificationToken();
+        token.setUser(user);
+        token.setToken(tokenString);
+        token.setExpiryDate(LocalDateTime.now().plusHours(24));
+        tokenRepository.save(token);
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(user.getEmail());
+        mailMessage.setSubject("Complete Registration!");
+        mailMessage.setText("To confirm your account, please click here : "
+                + "http://localhost:8080/confirm-account?token=" + tokenString);
+
+        mailSender.send(mailMessage);
+    }
+    public boolean verifyUser(String token) {
+        VerificationToken verificationToken = tokenRepository.findByToken(token);
+        if (verificationToken == null || verificationToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+            return false;
+        }
+
+        User user = verificationToken.getUser();
+        user.setActive(true);
+        userRepository.save(user);
+
+        return true;
     }
 
     @Override
@@ -58,6 +101,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long userId) {
+        List<VerificationToken> tokens = tokenRepository.findByUserId(userId);
+
+        for (VerificationToken token : tokens) {
+            tokenRepository.delete(token);
+        }
         userRepository.deleteById(userId);
     }
 
@@ -93,7 +141,14 @@ public class UserServiceImpl implements UserService {
         user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setEmail(userDto.getEmail());
-        user.setRoles(userDto.getRoles().stream().map(role -> "ROLE_" + role).collect(Collectors.toSet()));
+        user.setActive(true);
+        Set<String> roleStrings = userDto.getRoles();
+        Set<Role> roles = roleStrings.stream()
+                .map(String::toUpperCase)
+                .map(Role::valueOf)
+                .collect(Collectors.toSet());
+        user.setRoles(roles);
+
         userRepository.save(user);
     }
 

@@ -1,5 +1,6 @@
 package com.tdtu.backend;
 
+import com.tdtu.backend.model.Role;
 import com.tdtu.backend.model.User;
 import com.tdtu.backend.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -27,7 +28,8 @@ public class BackEndApplication {
 				adminUser.setUsername(adminUsername);
 				adminUser.setPassword(adminPassword);
 				adminUser.setEmail(adminEmail);
-				adminUser.setRoles(Collections.singleton("ROLE_ADMIN"));
+				adminUser.setActive(true);
+				adminUser.setRoles(Collections.singleton(Role.ADMIN));
 				userRepository.save(adminUser);
 			}
 		};

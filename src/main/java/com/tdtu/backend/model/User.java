@@ -22,6 +22,8 @@ public class User implements UserDetails {
     @Column(nullable = false, unique = true)
     private String username;
 
+    private boolean active;
+
     @Column(nullable = false)
     private String password;
 
@@ -30,8 +32,9 @@ public class User implements UserDetails {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private Set<String> roles;
+    private Set<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -56,6 +59,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.active;
     }
 }

@@ -31,13 +31,16 @@ public class CustomUserDetailsService implements UserDetailsService{
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
+        if (!user.isEnabled()) {
+            throw new UsernameNotFoundException("User not activated");
+        }
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
                 user.getPassword(), getAuthorities(user));
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(User user) {
         return user.getRoles().stream()
-                .map(SimpleGrantedAuthority::new)
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
                 .collect(Collectors.toSet());
     }
 }

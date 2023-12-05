@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/index", "/register", "/login","/rooms",
-                                "/rooms/details/**","/css/**","/uploads/**",
+                                "/rooms/details/**","/css/**","/uploads/**","/confirm-account","/registrationPending",
                                 "/js/**", "/img/**","/vendor/**","/fonts/**","/js/**")
                         .permitAll()
                         .requestMatchers("/cart", "/cart/**", "/orders", "/checkout","/user/change-password")
@@ -39,6 +39,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .permitAll()
+                        .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
                 );
         return http.build();
