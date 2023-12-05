@@ -96,7 +96,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="row">
-                            <div th:each="serviceModel : ${serviceModelList}" class="col-lg-4 col-sm-6">
+                            <div th:each="serviceModel : ${servicesList}" class="col-lg-4 col-sm-6">
                                 <div class="serviceModel-card">
                                     <!-- Hiển thị hình ảnh -->
                                     <img th:src="@{'/uploads/' + ${serviceModel.imagePath}}" alt="Service Image">
