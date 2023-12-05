@@ -1,5 +1,6 @@
 package com.tdtu.backend.controller;
 
+import com.tdtu.backend.model.Room;
 import com.tdtu.backend.model.Services;
 import com.tdtu.backend.service.FileStorageService;
 import com.tdtu.backend.service.ServiceService;
@@ -60,7 +61,7 @@ public class ServiceController {
         return "redirect:/admin/services";
     }
 
-    @PostMapping("/admin/services/{id}/delete")
+    @GetMapping("/admin/services/{id}/delete")
     public String deleteService(@PathVariable("id") Long id, Model model) {
         serviceService.deleteById(id);
         return "redirect:/admin/services";
@@ -90,11 +91,15 @@ public class ServiceController {
             String imagePath = fileStorageService.saveImage(imageFile);
             existingService.setImagePath(imagePath);
         }
-
             serviceService.save(existingService);
-
-
         return "redirect:/admin/services";
+    }
+    @GetMapping("/services/details/{id}")
+    public String showDetails(@PathVariable("id") Long id, Model model) {
+
+        Optional<Services> service = serviceService.findById(id);
+        service.ifPresent(services -> model.addAttribute("service", services));
+        return "service-details";
     }
 
 }
