@@ -96,32 +96,25 @@
                 <div class="container">
                     <div class="row">
                         <div class="row">
-                            <div th:each="service : ${servicesList}" class="col-lg-4 col-sm-6">
-                                <div class="service-card">
-                                    <!-- Hiển thị hình ảnh -->
-                                    <img th:src="@{'/uploads/' + ${service.imagePath}}" alt="Service Image">
-
-                                    <h4 th:text="${service.name}">Service Name</h4>
-                                    <h5 th:text="${service.price}">Price</h5>
-                                    <p th:text="${service.description}">Description</p>
-
-                                    <div class="actions">
-                                        <form th:action="@{/admin/services/{id}/delete(id=${service.id})}" method="post">
-                                            <button class="booking-btn" type="submit">Delete</button>
-                                        </form>
-                                        <a class="booking-btn" th:href="@{/admin/services/{id}/edit(id=${service.id})}">Edit</a>
+                            <div th:each="service : ${servicesList}" class="col-lg-4 col-sm-6 md-4">
+                                <a th:href="@{/services/details/{id}(id=${service.id})}">
+                                    <div class="service-card">
+                                        <!-- Hiển thị hình ảnh -->
+                                        <img th:src="@{'/uploads/' + ${service.imagePath}}" alt="Service Image" style=" width: 400px;height: 300px;object-fit: cover;">
+                                        <h4 th:text="${service.name}">Service Name</h4>
+                                        <h5 th:text="${service.price}">Price</h5>
+                                        <p th:text="${service.description}">Description</p>
+                                        <div class="actions" style="padding-bottom:10px">
+                                            <a class="booking-btn" th:href="@{/admin/services/{id}/delete(id=${service.id})}"
+                                               th:onclick="'return confirm(\'Bạn có chắc chắn muốn xóa dịch vụ này?\')'">Xóa</a>
+                                            <a class="booking-btn" th:href="@{/admin/services/{id}/edit(id=${service.id})}">Edit</a>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
+
                             </div>
                         </div>
 
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="room-pagination">
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                        </div>
                     </div>
                 </div>
             </section>
