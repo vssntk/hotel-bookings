@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "services")
-public class Services {
+public class ServiceModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

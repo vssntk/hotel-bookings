@@ -47,14 +47,14 @@
                     <li><a href="./rooms-family.html">Phòng Gia Đình</a></li>
                 </ul>
             </li>
-            <li><a href="./service.html">Dịch vụ</a></li>
+            <li><a href="./serviceModel.html">Dịch vụ</a></li>
             <li><a href="./contact.html">Liên hệ</a></li>
             <li class="active"> <a href="./cart.html">Giỏ hàng</a></li>
             <li ><a href="./user-info.html">Tài khoản</a>
                 <ul class="dropdown">
                     <li><a href="./user-info.html">Thông tin tài khoản</a></li>
                     <li ><a href="./history-room.html">Xem lịch sử đặt phòng</a></li>
-                    <li><a href="./history-service.html">Xem lịch sử đặt dịch vụ</a></li>
+                    <li><a href="./history-serviceModel.html">Xem lịch sử đặt dịch vụ</a></li>
                     <li><a href="./change-pass.html">Đổi mật khẩu</a></li>
                 </ul>
             </li>
@@ -88,14 +88,14 @@
                                         <li><a href="./rooms-family.html">Phòng Gia Đình</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./service.html">Dịch vụ</a></li>
+                                <li><a href="./serviceModel.html">Dịch vụ</a></li>
                                 <li><a href="./contact.html">Liên hệ</a></li>
                                 <li   class="active"><a href="./cart.html">Giỏ hàng</a></li>
                                 <li><a href="./user-info.html">Tài khoản</a>
                                     <ul class="dropdown">
                                         <li><a href="./user-info.html">Thông tin tài khoản</a></li>
                                         <li><a href="./history-room.html">Xem lịch sử đặt phòng</a></li>
-                                        <li><a href="./history-service.html">Xem lịch sử đặt dịch vụ</a></li>
+                                        <li><a href="./history-serviceModel.html">Xem lịch sử đặt dịch vụ</a></li>
                                         <li><a href="./change-pass.html">Đổi mật khẩu</a></li>
                                     </ul>
                                 </li>
@@ -132,52 +132,32 @@
                   <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
                 </tr>
               </thead>
-              <tbody>
-      
-                <tr>
-                  <td class="p-4">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <a href="./room-details.html" class="d-block text-dark">Phòng A0001</a>
-                        
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                <tbody>
+                <tr th:each="item : ${cart.items}">
+                    <td class="p-4">
+                        <div class="media align-items-center">
+                            <div class="media-body">
+                                <span th:text="${item.serviceModel.name}" class="d-block text-dark"></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4" th:text="${item.serviceModel.price} + ' VNĐ'"></td>
+                    <td class="align-middle p-4">
+                        <form th:action="@{/cart/update}" method="post">
+                            <input type="hidden" name="itemId" th:value="${item.id}" />
+                            <input type="text" class="form-control text-center" name="quantity" th:value="${item.quantity}" />
+                            <button type="submit" class="btn btn-link p-0 m-0 d-inline">Update</button>
+                        </form>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4" th:text="${item.getTotalPrice()} + ' VNĐ'"></td>
+                    <td class="text-center align-middle px-0">
+                        <form th:action="@{/cart/remove/{itemId}(itemId=${item.id})}" method="post">
+                            <button type="submit" class="shop-tooltip close float-none text-danger" title="Remove">×</button>
+                        </form>
+                    </td>
                 </tr>
-      
-                <tr>
-                  <td class="p-4">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <a href="./service-details.html" class="d-block text-dark">Nhà hàng</a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
-                </tr>
-      
-                <tr>
-                  <td class="p-4">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <a href="./service-details.html" class="d-block text-dark">Bar</a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
-                </tr>
-      
-              </tbody>
+                </tbody>
+
             </table>
           </div>
           <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
@@ -190,7 +170,10 @@
               </div>
               <div class="text-right mt-4">
                 <label class="text-muted font-weight-normal m-0">Tổng tiền</label>
-                <div class="text-large"><strong>2.000.000 VNĐ</strong></div>
+                  <div class="text-large">
+                      <strong th:text="${cart.getTotalPrice()} + ' VNĐ'">2.000.000 VNĐ</strong>
+                  </div>
+
               </div>
             </div>
           </div>

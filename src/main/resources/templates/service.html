@@ -48,14 +48,14 @@
                         <li><a href="./rooms-family.html">Phòng Gia Đình</a></li>
                     </ul>
                 </li>
-                <li class="active"><a href="./service.html">Dịch vụ</a></li>
+                <li class="active"><a href="./serviceModel.html">Dịch vụ</a></li>
                 <li><a href="./contact.html">Liên hệ</a></li>
 				<li><a href="./cart.html">Giỏ hàng</a></li>
 				<li><a href="./user-info.html">Tài khoản</a>
 					<ul class="dropdown">
 						<li><a href="./user-info.html">Thông tin tài khoản</a></li>
 						<li><a href="./history-room.html">Xem lịch sử đặt phòng</a></li>
-						<li><a href="./history-service.html">Xem lịch sử đặt dịch vụ</a></li>
+						<li><a href="./history-serviceModel.html">Xem lịch sử đặt dịch vụ</a></li>
                         <li><a href="./change-pass.html">Đổi mật khẩu</a></li>
 					</ul>
 				</li>
@@ -90,14 +90,14 @@
 											<li><a href="./rooms-family.html">Phòng Gia Đình</a></li>
                                         </ul>
                                     </li>
-                                    <li class="active"><a href="./service.html">Dịch vụ</a></li>
+                                    <li class="active"><a href="./serviceModel.html">Dịch vụ</a></li>
                                     <li><a href="./contact.html">Liên hệ</a></li>
 									<li><a href="./cart.html">Giỏ hàng</a></li>
                                     <li><a href="./user-info.html">Tài khoản</a>
                                         <ul class="dropdown">
                                             <li><a href="./user-info.html">Thông tin tài khoản</a></li>
 											<li><a href="./history-room.html">Xem lịch sử đặt phòng</a></li>
-                                            <li><a href="./history-service.html">Xem lịch sử đặt dịch vụ</a></li>
+                                            <li><a href="./history-serviceModel.html">Xem lịch sử đặt dịch vụ</a></li>
 											<li><a href="./change-pass.html">Đổi mật khẩu</a></li>
                                         </ul>
                                     </li>
@@ -143,42 +143,44 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
+                    <div class="serviceModel-item">
                             <i class="fa-brands fa-internet-explorer" style="font-size:50px"></i>
                             <h4>Internet</h4>
                             <p>Trải nghiệm lưu trú tiện nghi với Internet nhanh và ổn định tại khách sạn của chúng tôi.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
+                    <div class="serviceModel-item">
                             <i class="fa-solid fa-person-swimming" style="font-size:50px"></i>
                             <h4>Hồ bơi</h4>
                             <p>Tận hưởng khoảnh khắc thư giãn tại hồ bơi tiện nghi của chúng tôi, nơi bạn có thể tận hưởng không gian thoáng đãng và trải nghiệm lưu trú đầy sảng khoái.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
+                    <div class="serviceModel-item">
+                        <a th:href="@{/services(name='Breakfast')}">
                             <i class="fa-solid fa-utensils" style="font-size:50px"></i>
                             <h4>Bữa sáng</h4>
                             <p>Tận hưởng bữa sáng ngon miệng và đa dạng tại khách sạn của chúng tôi để bắt đầu mỗi ngày với năng lượng tích cực.</p>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
+                    <div class="serviceModel-item">
                             <i class="fa-solid fa-dumbbell" style="font-size:50px"></i>
                             <h4>Trung tâm thể dục</h4>
                             <p>Đắm chìm trong trải nghiệm lưu trú hoàn hảo với trung tâm thể dục tiện nghi tại khách sạn của chúng tôi.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
+                    <div class="serviceModel-item">
                             <i class="fa-solid fa-person-walking-luggage" style="font-size:50px"></i>
                             <h4>Dịch vụ đỗ hành lý</h4>
                             <p>Tiện ích dịch vụ đỗ hành lý, giúp khách hàng tận hưởng chuyến đi mà không phải lo lắng về hành lý tại khách sạn của chúng tôi.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
+                    <div class="serviceModel-item">
                             <i class="fa-regular fa-newspaper" style="font-size:50px"></i>
                             <h4>Báo hàng ngày</h4>
                             <p>Thức dậy và đón nhận mỗi ngày mới với bản tin hàng ngày tại khách sạn của chúng tôi, nơi bạn sẽ luôn cập nhật thông tin và sự kiện.</p>
@@ -207,73 +209,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <a href="./service-details.html"> <i class="flaticon-036-parking"></i>
-                            <h4>Dịch vụ giữ xe</h4>
-                            <p> Với không gian đậu xe an toàn và được quản lý chặt chẽ, quý khách có thể yên tâm về việc bảo quản phương tiện của mình.</p></a>
-                            <h5>100.000 VNĐ</h5><br/>
-                            <a class = "booking-btn" href="#">Booking Now</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <a href="./service-details.html">
-                            <i class="flaticon-033-dinner"></i>
-                            <h4>Nhà hàng</h4>
-                            <p>Nhà hàng phục vụ bữa sáng, trưa, và tối với nhiều loại ẩm thực và thực đơn đặc sản của nhiều vùng miền.</p>
-                            <h5>100.000 VNĐ</h5><br/>
-                            <a class = "booking-btn" href="#">Booking Now</a>
+                <div th:each="serviceModel : ${servicesList}" class="col-lg-4 col-sm-6">
+                    <div class="serviceModel-item">
+                        <a th:href="@{/services/details/{id}(id=${serviceModel.id})}">
+                            <h4 th:text="${serviceModel.name}">Service Name</h4>
+                            <p th:text="${serviceModel.description}">Service Description</p>
+                            <h5 th:text="${serviceModel.price} + ' VNĐ'">100.000 VNĐ</h5><br/>
+                            <form th:action="@{/cart/add}" method="post">
+                                <input type="hidden" name="serviceId" th:value="${serviceModel.id}" />
+                                <button type="submit" class="booking-btn">Thêm vào giỏ</button>
+                            </form>
                         </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <a href="./service-details.html">
-                            <i class="flaticon-026-bed"></i>
-                            <h4>Dịch vụ phòng</h4>
-                            <p>Tận hưởng không gian riêng tư tốt nhất với dịch vụ phòng suốt 24 giờ và sự hỗ trợ nhanh chóng của nhân viên.</p>
-                            <h5>100.000 VNĐ</h5><br/>
-                            <a class = "booking-btn" href="#">Booking Now</a>
-                        </a>
-                        
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <a href ="./service-details.html">
-                            <i class="flaticon-024-towel"></i>
-                            <h4>Dịch vụ giặt là và là ủi</h4>
-                            <p>Đội ngũ nhân viên chuyên nghiệp sẽ đảm bảo rằng quần áo sẽ được xử lý một cách cẩn thận và hiệu quả.</p>
-                            <h5>100.000 VNĐ</h5><br/>
-                            <a class = "booking-btn" href="#">Booking Now</a>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <a href="./service-details.html">
-                            <i class="flaticon-044-clock-1"></i>
-                            <h4>Đưa đón</h4>
-                            <p>Với đội xe hiện đại và tài xế chuyên nghiệp, chúng tôi cam kết đưa bạn đến đích an toàn và đúng giờ.</p>
-                            <h5>100.000 VNĐ</h5><br/>
-                            <a class = "booking-btn" href="#">Booking Now</a>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <a href="./service-details.html">
-                            <i class="flaticon-012-cocktail"></i>
-                            <h4>Bar</h4>
-                            <p>Không gian thoải mái và ấm cúng tại bar của chúng tôi là nơi lý tưởng để gặp gỡ bạn bè, thư giãn sau một ngày dài hoặc tận hưởng không khí ấm áp với người thân.</p>
-                            <h5>100.000 VNĐ</h5><br/>
-                            <a class = "booking-btn" href="#">Booking Now</a>
-                        </a>
-                        
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="room-pagination">

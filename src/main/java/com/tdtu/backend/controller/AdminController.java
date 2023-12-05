@@ -2,9 +2,10 @@ package com.tdtu.backend.controller;
 
 import com.tdtu.backend.dto.UserAdminDto;
 import com.tdtu.backend.model.Room;
+import com.tdtu.backend.model.ServiceModel;
 import com.tdtu.backend.model.User;
-import com.tdtu.backend.service.CategoryService;
 import com.tdtu.backend.service.RoomService;
+import com.tdtu.backend.service.ServiceService;
 import com.tdtu.backend.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class AdminController {
     private final UserService userService;
     @Autowired
     private RoomService roomService;
+    @Autowired
+    private ServiceService serviceService;
     @Autowired
     public AdminController(UserService userService) {
         this.userService = userService;
@@ -78,5 +81,11 @@ public class AdminController {
         List<Room> rooms = roomService.getAllRooms();
         model.addAttribute("rooms", rooms);
         return "rooms-admin";
+    }
+    @GetMapping("/services")
+    public String showServices(Model model) {
+        List<ServiceModel> serviceModelList = serviceService.findAll();
+        model.addAttribute("servicesList", serviceModelList);
+        return "service-admin";
     }
 }

@@ -1,6 +1,6 @@
 package com.tdtu.backend.controller;
 
-import com.tdtu.backend.model.Services;
+import com.tdtu.backend.model.ServiceModel;
 import com.tdtu.backend.service.FileStorageService;
 import com.tdtu.backend.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,20 +21,17 @@ public class ServiceController {
     private FileStorageService fileStorageService;
 
 
-    @GetMapping("/admin/services")
+    @GetMapping("/services")
     public String showServices(Model model) {
-        List<Services> servicesList = serviceService.findAll();
-        model.addAttribute("servicesList", servicesList);
-        return "service-admin";
+        List<ServiceModel> serviceModelList = serviceService.findAll();
+        model.addAttribute("servicesList", serviceModelList);
+        return "service";
     }
+
 
     @GetMapping("/admin/services/add")
     public String addServiceForm(Model model) {
         return "add-service";
-    }
-    @GetMapping("/services")
-    public String showService(Model model) {
-        return "service";
     }
 
     @PostMapping("/admin/services/add")
@@ -48,14 +41,14 @@ public class ServiceController {
                              @RequestParam("imageFile") MultipartFile imageFile,
                              Model model) {
         String imagePath = fileStorageService.saveImage(imageFile);
-        Services newService = new Services();
-        newService.setName(name);
-        newService.setPrice(price);
-        newService.setDescription(description);
+        ServiceModel newServiceModel = new ServiceModel();
+        newServiceModel.setName(name);
+        newServiceModel.setPrice(price);
+        newServiceModel.setDescription(description);
 
-        newService.setImagePath(imagePath);
+        newServiceModel.setImagePath(imagePath);
 
-        serviceService.save(newService);
+        serviceService.save(newServiceModel);
 
         return "redirect:/admin/services";
     }
@@ -69,7 +62,7 @@ public class ServiceController {
     @GetMapping("/admin/services/{id}/edit")
     public String editServiceForm(@PathVariable("id") Long id, Model model) {
 
-        Optional<Services> service = serviceService.findById(id);
+        Optional<ServiceModel> service = serviceService.findById(id);
         service.ifPresent(services -> model.addAttribute("service", services));
         return "edit-service";
     }
@@ -81,20 +74,31 @@ public class ServiceController {
                               @RequestParam("description") String description,
                               @RequestParam("imageFile") MultipartFile imageFile,
                               Model model) {
-        Optional<Services> serviceOptional = serviceService.findById(id);
-        Services existingService = serviceOptional.get();
-        existingService.setName(name);
-        existingService.setPrice(price);
-        existingService.setDescription(description);
+        Optional<ServiceModel> serviceOptional = serviceService.findById(id);
+        ServiceModel existingServiceModel = serviceOptional.get();
+        existingServiceModel.setName(name);
+        existingServiceModel.setPrice(price);
+        existingServiceModel.setDescription(description);
         if (!imageFile.isEmpty()) {
             String imagePath = fileStorageService.saveImage(imageFile);
-            existingService.setImagePath(imagePath);
+            existingServiceModel.setImagePath(imagePath);
         }
 
-            serviceService.save(existingService);
+            serviceService.save(existingServiceModel);
 
 
         return "redirect:/admin/services";
     }
+    @GetMapping("/services/details/{id}")
+    public String viewServiceDetails(@PathVariable("id") Long id, Model model) {
+        Optional<ServiceModel> serviceOptional = serviceService.findById(id);
+        if (serviceOptional.isPresent()) {
+            model.addAttribute("service", serviceOptional.get());
+            return "service-details";
+        } else {
+            return "service-not-found";
+        }
+    }
+
 
 }
