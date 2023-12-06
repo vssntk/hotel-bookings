@@ -20,6 +20,16 @@ public class AuthController {
     public String index(Model model) {
         return "index";
     }
+    @GetMapping("/about")
+    public String about(Model model) {
+        return "about-us";
+    }
+    @GetMapping("/contact")
+    public String contact(Model model) {
+        return "contact";
+    }
+
+
 
     @GetMapping("/login")
     public String login() {
