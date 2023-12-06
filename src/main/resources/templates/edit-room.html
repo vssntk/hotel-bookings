@@ -29,8 +29,8 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./rooms-admin.html" class="text-nowrap logo-img">
-            <img src="./img/logo.png" width="180" alt="" />
+          <a href="/admin/rooms" class="text-nowrap logo-img">
+            <img src="/img/logo.png" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -39,7 +39,7 @@
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./rooms-admin.html" aria-expanded="">
+              <a class="sidebar-link" href="/admin/rooms" aria-expanded="">
                 <span>
                     <i class="fa-solid fa-bed"></i>
                 </span>
@@ -47,7 +47,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./serviceModel-admin.html" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/serviceModel" aria-expanded="false">
                 <span>
                   <i class="ti ti-alert-circle"></i>
                 </span>
@@ -55,15 +55,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./guests-admin.html" aria-expanded="false">
-                <span>
-                    <i class="fa-solid fa-users"></i>
-                </span>
-                <span class="hide-menu">Quản lý khách hàng</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./accounts-admin.html" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/users" aria-expanded="false">
                 <span>
                     <i class="fa-solid fa-user-gear"></i>
                 </span>
@@ -71,7 +63,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link" href="./login.html" aria-expanded="false">
+                <a class="sidebar-link" href="/login" aria-expanded="false">
                   <span>
                     <i class="fa-solid fa-right-from-bracket"></i>
                   </span>
@@ -166,6 +158,7 @@
             </div>
         </section>
         <!-- Rooms Section End -->
+    </div>
     </div>
   </div>
   <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
