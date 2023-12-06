@@ -29,8 +29,6 @@ public class AuthController {
         return "contact";
     }
 
-
-
     @GetMapping("/login")
     public String login() {
         return "login";

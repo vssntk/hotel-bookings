@@ -44,8 +44,7 @@ public class UserController {
 
             if (isPasswordChanged) {
                 model.addAttribute("successMessage", "Password changed successfully!");
-                return "redirect:/";
-            } else {
+                return "redirect:/";            } else {
                 model.addAttribute("errorMessage", "Không khớp mật khẩu");
                 return "change-pass";
             }
@@ -54,5 +53,4 @@ public class UserController {
             return "change-pass";
         }
     }
-
 }
