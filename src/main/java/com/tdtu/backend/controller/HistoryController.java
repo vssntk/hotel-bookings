@@ -27,7 +27,7 @@ public class HistoryController {
     public String showBookingHistory(Model model, Principal principal) {
         String username = principal.getName();
         Optional<User> user = userService.findByUsername(username);
-        List<Booking> bookingHistory = bookingService.getBookingHistory(user);
+        Object bookingHistory = bookingService.getBookingHistory(user);
         model.addAttribute("bookingHistory", bookingHistory);
         return "history-room";
     }
@@ -36,7 +36,7 @@ public class HistoryController {
     public String showServiceHistory(Model model, Principal principal) {
         String username = principal.getName();
         Optional<User> user = userService.findByUsername(username);
-        List<Service> serviceHistory = bookingService.getServiceHistory(user);
+        Object serviceHistory = bookingService.getServiceHistory(user);
         model.addAttribute("serviceHistory", serviceHistory);
         return "history-service";
     }

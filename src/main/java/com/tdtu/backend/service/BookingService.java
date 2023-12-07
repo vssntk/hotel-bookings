@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,12 +57,12 @@ public class BookingService {
         cartRepository.save(cart);
     }
 
-    public List<Booking> getBookingHistory(Optional<User> user) {
-        return (List<Booking>) user.map(u -> bookingRepository.findByUser(u)).orElse(null);
+    public Object getBookingHistory(Optional<User> user) {
+        return user.map(u -> bookingRepository.findByUser(u)).orElse(null);
     }
 
-    public List<com.tdtu.backend.model.Service> getServiceHistory(Optional<User> user) {
-        return (List<Service>) user.map(u -> serviceRepository.findByUser(u)).orElse(null);
+    public Object getServiceHistory(Optional<User> user) {
+        return user.map(u -> serviceRepository.findByUser(u)).orElse(null);
     }
 }
 
