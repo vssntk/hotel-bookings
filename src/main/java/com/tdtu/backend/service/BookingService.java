@@ -5,6 +5,7 @@ import com.tdtu.backend.model.Booking;
 import com.tdtu.backend.model.User;
 import com.tdtu.backend.repository.BookingRepository;
 import com.tdtu.backend.repository.CartRepository;
+import com.tdtu.backend.repository.ServiceRepository;
 import com.tdtu.backend.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookingService {
@@ -24,6 +27,9 @@ public class BookingService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ServiceRepository serviceRepository;
 
     public Booking createBooking(Long userId) {
         User user = userRepository.findById(userId)
@@ -52,5 +58,12 @@ public class BookingService {
         cartRepository.save(cart);
     }
 
+    public List<Booking> getBookingHistory(Optional<User> user) {
+        return (List<Booking>) user.map(u -> bookingRepository.findByUser(u)).orElse(null);
+    }
+
+    public List<com.tdtu.backend.model.Service> getServiceHistory(Optional<User> user) {
+        return (List<Service>) user.map(u -> serviceRepository.findByUser(u)).orElse(null);
+    }
 }
 

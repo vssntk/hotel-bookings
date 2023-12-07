@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -24,6 +25,9 @@ public class Booking {
 
     @OneToMany
     private List<CartItem> items;
+
+    @OneToMany(mappedBy = "service-id", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Service> services;
 
     private LocalDateTime bookingDate;
     private Double totalPrice;

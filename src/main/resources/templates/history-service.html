@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -26,7 +26,7 @@
 <div class="canvas-open">
     <i class="icon_menu"></i>
 </div>
-    <!-- HEADER BEGIN-->
+<!-- HEADER BEGIN-->
 <div class="offcanvas-menu-wrapper">
     <div class="canvas-close">
         <i class="icon_close"></i>
@@ -36,29 +36,28 @@
     </div>
     <nav class="mainmenu mobile-menu">
         <ul>
-            <li><a href="/">Trang chủ</a></li>
-            <li><a href="/about">Giới thiệu</a></li>
-            <li><a href="/rooms">Trang</a>
-            </li>
-            <li><a href="/services">Dịch vụ</a></li>
-            <li><a href="/contact">Liên hệ</a></li>
-            <li><a href="/cart">Giỏ hàng</a></li>
-            <li class="active"><a href="/user">Tài khoản</a>
+            <li><a href="./index.html">Trang chủ</a></li>
+            <li><a href="./about-us.html">Giới thiệu</a></li>
+            <li><a href="./rooms.html">Trang</a>
                 <ul class="dropdown">
-                    <li><a href="/user">Thông tin tài khoản</a></li>
-                    <li><a href="./history-room.html">Xem lịch sử đặt phòng</a></li>
-                    <li><a href="./history-serviceModel.html">Xem lịch sử đặt dịch vụ</a></li>
-                    <li><a href="/user/change-pass">Đổi mật khẩu</a></li>
+                    <li><a href="./rooms.html">Danh sách Phòng</a></li>
+                    <li><a href="./rooms-1.html">Phòng Đơn</a></li>
+                    <li><a href="./rooms-2.html">Phòng Đôi</a></li>
+                    <li><a href="./rooms-family.html">Phòng Gia Đình</a></li>
                 </ul>
             </li>
-            <li sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="Đăng xuất" />
-                </form>
+            <li><a href="./service.html">Dịch vụ</a></li>
+            <li><a href="./contact.html">Liên hệ</a></li>
+            <li><a href="./cart.html">Giỏ hàng</a></li>
+            <li class="active"><a href="./user-info.html">Tài khoản</a>
+                <ul class="dropdown">
+                    <li><a href="./user-info.html">Thông tin tài khoản</a></li>
+                    <li><a href="./history-room.html">Xem lịch sử đặt phòng</a></li>
+                    <li><a href="./history-service.html">Xem lịch sử đặt dịch vụ</a></li>
+                    <li><a href="./change-pass.html">Đổi mật khẩu</a></li>
+                </ul>
             </li>
-            <li sec:authorize="!isAuthenticated()">
-                <a th:href="@{/login}">Đăng nhập</a>
-            </li>
+            <li><a href="./login.html" >Đăng nhập</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -69,7 +68,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo">
-                        <a href="/">
+                        <a href="./index.html">
                             <img src="img/logo.png" alt="">
                         </a>
                     </div>
@@ -78,29 +77,28 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li><a href="/">Trang chủ</a></li>
-                                <li><a href="/about">Giới thiệu</a></li>
-                                <li><a href="/rooms">Trang</a>
-                                </li>
-                                <li><a href="/services">Dịch vụ</a></li>
-                                <li><a href="/contact">Liên hệ</a></li>
-                                <li><a href="/cart">Giỏ hàng</a></li>
-                                <li class="active"><a href="/user">Tài khoản</a>
+                                <li><a href="./index.html">Trang chủ</a></li>
+                                <li><a href="./about-us.html">Giới thiệu</a></li>
+                                <li><a href="./rooms.html">Trang</a>
                                     <ul class="dropdown">
-                                        <li><a href="/user">Thông tin tài khoản</a></li>
-                                        <li><a href="./history-room.html">Xem lịch sử đặt phòng</a></li>
-                                        <li><a href="./history-serviceModel.html">Xem lịch sử đặt dịch vụ</a></li>
-                                        <li><a href="/user/change-pass">Đổi mật khẩu</a></li>
+                                        <li><a href="./rooms.html">Danh sách Phòng</a></li>
+                                        <li><a href="./rooms-1.html">Phòng Đơn</a></li>
+                                        <li><a href="./rooms-2.html">Phòng Đôi</a></li>
+                                        <li><a href="./rooms-family.html">Phòng Gia Đình</a></li>
                                     </ul>
                                 </li>
-                                <li sec:authorize="isAuthenticated()">
-                                    <form th:action="@{/logout}" method="post">
-                                        <input type="submit" value="Đăng xuất" />
-                                    </form>
+                                <li><a href="./service.html">Dịch vụ</a></li>
+                                <li><a href="./contact.html">Liên hệ</a></li>
+                                <li><a href="./cart.html">Giỏ hàng</a></li>
+                                <li class="active"><a href="./user-info.html">Tài khoản</a>
+                                    <ul class="dropdown">
+                                        <li><a href="./user-info.html">Thông tin tài khoản</a></li>
+                                        <li><a href="./history-room.html">Xem lịch sử đặt phòng</a></li>
+                                        <li><a href="./history-service.html">Xem lịch sử đặt dịch vụ</a></li>
+                                        <li><a href="./change-pass.html">Đổi mật khẩu</a></li>
+                                    </ul>
                                 </li>
-                                <li sec:authorize="!isAuthenticated()">
-                                    <a th:href="@{/login}">Đăng nhập</a>
-                                </li>
+                                <li><a href="./login.html" >Đăng nhập</a></li>
                             </ul>
                         </nav>
                         <div class="nav-right search-switch">
@@ -112,137 +110,137 @@
         </div>
     </div>
 </header>
-    <!-- HEADER END-->
+<!-- HEADER END-->
 
-    <!-- CONTENT BEGIN-->
+<!-- CONTENT BEGIN-->
 <div class="container px-3 my-5 clearfix">
-  <div class="card">
-      <div class="card-header">
-          <h2>Lịch sử đặt phòng</h2>
-      </div>
-      <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered m-0">
-              <thead>
-                <tr>
-                  <th class="text-center py-3 px-4" style="min-width: 400px;">Lựa chọn của bạn</th>
-                  <th class="text-right py-3 px-4" style="width: 100px;">Giá</th>
-                  <th class="text-center py-3 px-4" style="width: 120px;">Số lượng</th>
-                  <th class="text-right py-3 px-4" style="width: 100px;">Tổng tiền</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="p-4">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <a href="./serviceModel-details.html" class="d-block text-dark">Dịch vụ phòng</a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                </tr>
-                <tr>
-                  <td class="p-4">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <a href="./serviceModel-details.html" class="d-block text-dark">Nhà hàng</a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                </tr>
-                <tr>
-                  <td class="p-4">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <a href="./serviceModel-details.html" class="d-block text-dark">Đưa đón</a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                </tr>
-              </tbody>
-              
-            </table>
-          </div>
-          <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="room-pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+    <div class="card">
+        <div class="card-header">
+            <h2>Lịch sử đặt phòng</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered m-0">
+                    <thead>
+                    <tr>
+                        <th class="text-center py-3 px-4" style="min-width: 400px;">Lựa chọn của bạn</th>
+                        <th class="text-right py-3 px-4" style="width: 100px;">Giá</th>
+                        <th class="text-center py-3 px-4" style="width: 120px;">Số lượng</th>
+                        <th class="text-right py-3 px-4" style="width: 100px;">Tổng tiền</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="p-4">
+                            <div class="media align-items-center">
+                                <div class="media-body">
+                                    <a href="./service-details.html" class="d-block text-dark">Dịch vụ phòng</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
+                        <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
+                        <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4">
+                            <div class="media align-items-center">
+                                <div class="media-body">
+                                    <a href="./service-details.html" class="d-block text-dark">Nhà hàng</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
+                        <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
+                        <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4">
+                            <div class="media align-items-center">
+                                <div class="media-body">
+                                    <a href="./service-details.html" class="d-block text-dark">Đưa đón</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
+                        <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
+                        <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="room-pagination">
+                            <a href="#">1</a>
+                            <a href="#">2</a>
+                            <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-          </div>
         </div>
     </div>
 </div>
-    <!-- CONTENT END-->
+<!-- CONTENT END-->
 
-    <!-- FOOTER BEGIN-->
+<!-- FOOTER BEGIN-->
 <footer class="footer-section">
-  <div class="container">
-      <div class="footer-text">
-          <div class="row">
-              <div class="col-lg-4">
-                  <div class="ft-about">
-                      <div class="logo">
-                          <a href="./index.html">
-                              <img src="img/footer-logo.png" alt="">
-                          </a>
-                      </div>
-                      <p>Chúng tôi truyền cảm hứng và kết nối <br /> với hàng triệu du khách</p>
-                      <div class="fa-social">
-                          <a href="#"><i class="fa fa-facebook"></i></a>
-                          <a href="#"><i class="fa fa-twitter"></i></a>
-                          <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                          <a href="#"><i class="fa fa-instagram"></i></a>
-                          <a href="#"><i class="fa fa-youtube-play"></i></a>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-3 offset-lg-1">
-                  <div class="ft-contact">
-                      <h6>Contact Us</h6>
-                      <ul>
-                          <li>(12) 345 67890</li>
-                          <li>hotelhub@gmail.com</li>
-                          <li>19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7, Thành phố Hồ Chí Minh</li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="col-lg-3 offset-lg-1">
-                  <div class="ft-newslatter">
-                      <h6>New latest</h6>
-                      <p> Nhận những cập nhật và ưu đãi mới nhất.</p>
-                      <form action="#" class="fn-form">
-                          <input type="text" placeholder="Email">
-                          <button type="submit"><i class="fa fa-send"></i></button>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="container">
+        <div class="footer-text">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="ft-about">
+                        <div class="logo">
+                            <a href="./index.html">
+                                <img src="img/footer-logo.png" alt="">
+                            </a>
+                        </div>
+                        <p>Chúng tôi truyền cảm hứng và kết nối <br /> với hàng triệu du khách</p>
+                        <div class="fa-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="ft-contact">
+                        <h6>Contact Us</h6>
+                        <ul>
+                            <li>(12) 345 67890</li>
+                            <li>hotelhub@gmail.com</li>
+                            <li>19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7, Thành phố Hồ Chí Minh</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="ft-newslatter">
+                        <h6>New latest</h6>
+                        <p> Nhận những cập nhật và ưu đãi mới nhất.</p>
+                        <form action="#" class="fn-form">
+                            <input type="text" placeholder="Email">
+                            <button type="submit"><i class="fa fa-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- FOOTER END-->
 </footer>
-    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
-    <script th:src="@{/js/jquery.nice-select.min.js}"></script>
-    <script th:src="@{/js/jquery-ui.min.js}"></script>
-    <script th:src="@{/js/jquery.slicknav.js}"></script>
-    <script th:src="@{/js/owl.carousel.min.js}"></script>
-    <script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/js/jquery.nice-select.min.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+<script th:src="@{/js/jquery.slicknav.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 
 </body>
 </html>

@@ -115,76 +115,109 @@
     <!-- HEADER END-->
 
     <!-- CONTENT BEGIN-->
-<div class="container px-3 my-5 clearfix">
-  <div class="card">
-      <div class="card-header">
-          <h2>Lịch sử đặt phòng</h2>
-      </div>
-      <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered m-0">
-              <thead>
-                <tr>
-                  <th class="text-center py-3 px-4" style="min-width: 400px;">Lựa chọn của bạn</th>
-                  <th class="text-right py-3 px-4" style="width: 100px;">Giá</th>
-                  <th class="text-center py-3 px-4" style="width: 120px;">Số lượng</th>
-                  <th class="text-right py-3 px-4" style="width: 100px;">Tổng tiền</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="p-4">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <a href="./room-details.html" class="d-block text-dark">Phòng A0001</a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                </tr>
-                <tr>
-                  <td class="p-4">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <a href="./room-details.html" class="d-block text-dark">Phòng A00002</a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                </tr>
-                <tr>
-                  <td class="p-4">
-                    <div class="media align-items-center">
-                      <div class="media-body">
-                        <a href="./room-details.html" class="d-block text-dark">Phòng A0003</a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>
-                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>
-                </tr>
-              </tbody>            
-            </table>
-          </div>
-          <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="room-pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
-                </div>
+<!--<div class="container px-3 my-5 clearfix">-->
+<!--  <div class="card">-->
+<!--      <div class="card-header">-->
+<!--          <h2>Lịch sử đặt phòng</h2>-->
+<!--      </div>-->
+<!--      <div class="card-body">-->
+<!--          <div class="table-responsive">-->
+<!--            <table class="table table-bordered m-0">-->
+<!--              <thead>-->
+<!--                <tr>-->
+<!--                  <th class="text-center py-3 px-4" style="min-width: 400px;">Lựa chọn của bạn</th>-->
+<!--                  <th class="text-right py-3 px-4" style="width: 100px;">Giá</th>-->
+<!--                  <th class="text-center py-3 px-4" style="width: 120px;">Số lượng</th>-->
+<!--                  <th class="text-right py-3 px-4" style="width: 100px;">Tổng tiền</th>-->
+<!--                </tr>-->
+<!--              </thead>-->
+<!--              <tbody>-->
+<!--                <tr>-->
+<!--                  <td class="p-4">-->
+<!--                    <div class="media align-items-center">-->
+<!--                      <div class="media-body">-->
+<!--                        <a href="./room-details.html" class="d-block text-dark">Phòng A0001</a>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>-->
+<!--                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>-->
+<!--                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td class="p-4">-->
+<!--                    <div class="media align-items-center">-->
+<!--                      <div class="media-body">-->
+<!--                        <a href="./room-details.html" class="d-block text-dark">Phòng A00002</a>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>-->
+<!--                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>-->
+<!--                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td class="p-4">-->
+<!--                    <div class="media align-items-center">-->
+<!--                      <div class="media-body">-->
+<!--                        <a href="./room-details.html" class="d-block text-dark">Phòng A0003</a>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>-->
+<!--                  <td class="align-middle p-4"><input type="text" class="form-control text-center" value="1"></td>-->
+<!--                  <td class="text-right font-weight-semibold align-middle p-4">200.000 VNĐ</td>-->
+<!--                </tr>-->
+<!--              </tbody>            -->
+<!--            </table>-->
+<!--          </div>-->
+<!--          <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-12">-->
+<!--                    <div class="room-pagination">-->
+<!--                        <a href="#">1</a>-->
+<!--                        <a href="#">2</a>-->
+<!--                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+    <div class="card">
+        <div class="card-header">
+            <h2>Lịch sử đặt phòng</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered m-0">
+                    <thead>
+                    <tr>
+                        <th class="text-center py-3 px-4" style="min-width: 400px;">Phòng</th>
+                        <th class="text-right py-3 px-4" style="width: 100px;">Giá</th>
+                        <th class="text-center py-3 px-4" style="width: 120px;">Ngày nhận phòng</th>
+                        <th class="text-center py-3 px-4" style="width: 120px;">Ngày trả phòng</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="booking : ${bookingHistory}">
+                        <td class="p-4">
+                            <div class="media align-items-center">
+                                <div class="media-body">
+                                    <a th:href="@{/room-details/{roomId}(roomId=${booking.room.id})}" class="d-block text-dark" th:text="${booking.room.name}"></a>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-right font-weight-semibold align-middle p-4" th:text="${booking.room.price}"></td>
+                        <td class="text-center font-weight-semibold align-middle p-4" th:text="${#dates.format(booking.checkin, 'dd/MM/yyyy')}"></td>
+                        <td class="text-center font-weight-semibold align-middle p-4" th:text="${#dates.format(booking.checkout, 'dd/MM/yyyy')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-          </div>
         </div>
     </div>
-</div>
     <!-- CONTENT END-->
 
     <!-- FOOTER BEGIN-->
