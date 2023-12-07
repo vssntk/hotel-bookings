@@ -2,6 +2,7 @@ package com.tdtu.backend.service;
 
 import com.tdtu.backend.model.Cart;
 import com.tdtu.backend.model.Booking;
+import com.tdtu.backend.model.ServiceModel;
 import com.tdtu.backend.model.User;
 import com.tdtu.backend.repository.BookingRepository;
 import com.tdtu.backend.repository.CartRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,11 +60,7 @@ public class BookingService {
     }
 
     public Object getBookingHistory(Optional<User> user) {
-        return user.map(u -> bookingRepository.findByUser(u)).orElse(null);
-    }
-
-    public Object getServiceHistory(Optional<User> user) {
-        return user.map(u -> serviceRepository.findByUser(u)).orElse(null);
+        return user.map(u -> bookingRepository.findByUser(u)).orElseGet(ArrayList::new);
     }
 }
 

@@ -1,9 +1,8 @@
 package com.tdtu.backend.controller;
 
-import com.tdtu.backend.model.Booking;
-import com.tdtu.backend.model.Service;
 import com.tdtu.backend.model.User;
 import com.tdtu.backend.service.BookingService;
+import com.tdtu.backend.service.ServiceService;
 import com.tdtu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -20,6 +18,8 @@ import java.util.Optional;
 public class HistoryController {
     @Autowired
     private BookingService bookingService;
+    @Autowired
+    private ServiceService serviceService;
     @Autowired
     private UserService userService;
 
@@ -36,7 +36,7 @@ public class HistoryController {
     public String showServiceHistory(Model model, Principal principal) {
         String username = principal.getName();
         Optional<User> user = userService.findByUsername(username);
-        Object serviceHistory = bookingService.getServiceHistory(user);
+        Object serviceHistory = serviceService.getServiceHistory(user);
         model.addAttribute("serviceHistory", serviceHistory);
         return "history-service";
     }

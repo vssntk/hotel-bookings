@@ -20,4 +20,7 @@ public class ServiceModel {
     private String description;
     private String imagePath;
 
+    @ManyToOne
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
 }

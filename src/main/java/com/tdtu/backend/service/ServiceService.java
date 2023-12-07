@@ -1,9 +1,11 @@
 package com.tdtu.backend.service;
 
 import com.tdtu.backend.model.ServiceModel;
+import com.tdtu.backend.model.User;
 import com.tdtu.backend.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +43,10 @@ public class ServiceService {
         } else {
             return null;
         }
+    }
+
+    public List<ServiceModel> getServiceHistory(Optional<User> user) {
+        return user.map(u -> serviceRepository.findByUser(u)).orElseGet(ArrayList::new);
     }
     public Optional<ServiceModel> findByName(String name) {
         return serviceRepository.findByName(name);
